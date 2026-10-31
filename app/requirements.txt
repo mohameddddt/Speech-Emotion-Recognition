@@ -1,0 +1,13 @@
+# Website / Hugging Face Space dependencies (CPU-only torch).
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.2
+transformers>=4.40,<6
+fastapi>=0.110
+uvicorn>=0.29
+numpy>=2.0
+scipy>=1.11
+pandas>=2.0
+scikit-learn>=1.5
+librosa>=0.10
+soundfile>=0.12
+joblib>=1.3

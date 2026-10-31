@@ -1,0 +1,492 @@
+{
+ "chance": 0.16666666666666666,
+ "human": 0.409,
+ "dataset": {
+  "clips": 7442,
+  "actors": 91,
+  "sentences": 12,
+  "emotions": 6
+ },
+ "protocol": "cv5",
+ "encoder": {
+  "name": "WavLM Large",
+  "hf_id": "microsoft/wavlm-large",
+  "params": "317 M",
+  "hours": "94k",
+  "layers": 24,
+  "dim": 1024,
+  "probe_params": 6150
+ },
+ "protocol_text": "nested 5-fold actor-grouped CV \u00b7 all 7,442 clips",
+ "best": "wavlm-large",
+ "models": [
+  {
+   "id": "rf",
+   "name": "Hand-crafted \u00b7 random forest",
+   "family": "hand-crafted",
+   "accuracy": 0.469,
+   "macro_f1": 0.449,
+   "protocol": "legacy"
+  },
+  {
+   "id": "mlp",
+   "name": "Hand-crafted \u00b7 MLP",
+   "family": "hand-crafted",
+   "accuracy": 0.515,
+   "macro_f1": 0.516,
+   "protocol": "legacy"
+  },
+  {
+   "id": "svm",
+   "name": "Hand-crafted \u00b7 SVM",
+   "family": "hand-crafted",
+   "accuracy": 0.516,
+   "macro_f1": 0.511,
+   "protocol": "legacy"
+  },
+  {
+   "id": "handcrafted",
+   "name": "Hand-crafted \u00b7 logistic regression",
+   "family": "hand-crafted",
+   "accuracy": 0.522,
+   "macro_f1": 0.519,
+   "protocol": "legacy"
+  },
+  {
+   "id": "xgb",
+   "name": "Hand-crafted \u00b7 XGBoost",
+   "family": "hand-crafted",
+   "accuracy": 0.523,
+   "macro_f1": 0.517,
+   "protocol": "legacy"
+  },
+  {
+   "id": "handcrafted-ensemble",
+   "name": "Hand-crafted \u00b7 ensemble",
+   "family": "hand-crafted",
+   "accuracy": 0.5316,
+   "macro_f1": 0.5311,
+   "protocol": "legacy"
+  },
+  {
+   "id": "wav2vec2-base",
+   "name": "wav2vec 2.0 Base",
+   "family": "pretrained",
+   "accuracy": 0.7085,
+   "std": 0.0262,
+   "macro_f1": 0.709,
+   "legacy_accuracy": 0.6888
+  },
+  {
+   "id": "hubert-base",
+   "name": "HuBERT Base",
+   "family": "pretrained",
+   "accuracy": 0.7162,
+   "std": 0.0249,
+   "macro_f1": 0.7164,
+   "legacy_accuracy": 0.6972
+  },
+  {
+   "id": "wavlm-base-plus",
+   "name": "WavLM Base+",
+   "family": "pretrained",
+   "accuracy": 0.7432,
+   "std": 0.0197,
+   "macro_f1": 0.7443,
+   "legacy_accuracy": 0.7416
+  },
+  {
+   "id": "wavlm-large",
+   "name": "WavLM Large",
+   "family": "pretrained",
+   "accuracy": 0.7786,
+   "std": 0.0232,
+   "macro_f1": 0.7795,
+   "legacy_accuracy": 0.7597
+  }
+ ],
+ "layers": {
+  "model": "WavLM Large",
+  "scores": [
+   0.5794,
+   0.6059,
+   0.6269,
+   0.6556,
+   0.6704,
+   0.6811,
+   0.6998,
+   0.7178,
+   0.7203,
+   0.7475,
+   0.7434,
+   0.7524,
+   0.7467,
+   0.7512,
+   0.7503,
+   0.7473,
+   0.7458,
+   0.7481,
+   0.7515,
+   0.7497,
+   0.7455,
+   0.7425,
+   0.7442,
+   0.7352,
+   0.724
+  ],
+  "selected": [
+   11
+  ]
+ },
+ "confusion": {
+  "labels": [
+   "angry",
+   "disgust",
+   "fear",
+   "happy",
+   "neutral",
+   "sad"
+  ],
+  "models": {
+   "wavlm-large": {
+    "name": "WavLM Large",
+    "matrix": [
+     [
+      1100,
+      55,
+      23,
+      62,
+      27,
+      4
+     ],
+     [
+      65,
+      930,
+      70,
+      48,
+      25,
+      133
+     ],
+     [
+      35,
+      46,
+      873,
+      57,
+      42,
+      218
+     ],
+     [
+      50,
+      44,
+      79,
+      1031,
+      44,
+      23
+     ],
+     [
+      11,
+      17,
+      20,
+      18,
+      970,
+      51
+     ],
+     [
+      6,
+      105,
+      142,
+      25,
+      100,
+      893
+     ]
+    ]
+   },
+   "handcrafted-ensemble": {
+    "name": "Hand-crafted \u00b7 ensemble (original split)",
+    "matrix": [
+     [
+      180,
+      29,
+      16,
+      31,
+      9,
+      0
+     ],
+     [
+      35,
+      137,
+      16,
+      34,
+      9,
+      34
+     ],
+     [
+      18,
+      22,
+      134,
+      31,
+      19,
+      41
+     ],
+     [
+      36,
+      29,
+      39,
+      128,
+      26,
+      7
+     ],
+     [
+      9,
+      28,
+      17,
+      30,
+      111,
+      32
+     ],
+     [
+      1,
+      53,
+      33,
+      16,
+      27,
+      135
+     ]
+    ]
+   }
+  }
+ },
+ "actors": [
+  1001,
+  1002,
+  1003,
+  1004,
+  1005,
+  1006,
+  1007,
+  1008,
+  1009,
+  1010,
+  1011,
+  1012,
+  1013,
+  1014,
+  1015,
+  1016,
+  1017,
+  1018,
+  1019,
+  1020,
+  1021,
+  1022,
+  1023,
+  1024,
+  1025,
+  1026,
+  1027,
+  1028,
+  1029,
+  1030,
+  1031,
+  1032,
+  1033,
+  1034,
+  1035,
+  1036,
+  1037,
+  1038,
+  1039,
+  1040,
+  1041,
+  1042,
+  1043,
+  1044,
+  1045,
+  1046,
+  1047,
+  1048,
+  1049,
+  1050,
+  1051,
+  1052,
+  1053,
+  1054,
+  1055,
+  1056,
+  1057,
+  1058,
+  1059,
+  1060,
+  1061,
+  1062,
+  1063,
+  1064,
+  1065,
+  1066,
+  1067,
+  1068,
+  1069,
+  1070,
+  1071,
+  1072,
+  1073,
+  1074,
+  1075,
+  1076,
+  1077,
+  1078,
+  1079,
+  1080,
+  1081,
+  1082,
+  1083,
+  1084,
+  1085,
+  1086,
+  1087,
+  1088,
+  1089,
+  1090,
+  1091
+ ],
+ "splits": [
+  [
+   1003,
+   1004,
+   1011,
+   1021,
+   1026,
+   1031,
+   1036,
+   1041,
+   1046,
+   1051,
+   1056,
+   1061,
+   1065,
+   1071,
+   1075,
+   1081,
+   1086,
+   1091
+  ],
+  [
+   1010,
+   1015,
+   1020,
+   1025,
+   1030,
+   1035,
+   1040,
+   1045,
+   1050,
+   1055,
+   1060,
+   1064,
+   1070,
+   1074,
+   1076,
+   1080,
+   1085,
+   1090
+  ],
+  [
+   1002,
+   1007,
+   1014,
+   1018,
+   1024,
+   1029,
+   1032,
+   1034,
+   1039,
+   1044,
+   1049,
+   1054,
+   1059,
+   1069,
+   1073,
+   1079,
+   1084,
+   1089
+  ],
+  [
+   1005,
+   1008,
+   1013,
+   1017,
+   1019,
+   1023,
+   1028,
+   1033,
+   1038,
+   1043,
+   1048,
+   1053,
+   1058,
+   1063,
+   1066,
+   1072,
+   1078,
+   1083,
+   1088
+  ],
+  [
+   1001,
+   1006,
+   1009,
+   1012,
+   1016,
+   1022,
+   1027,
+   1037,
+   1042,
+   1047,
+   1052,
+   1057,
+   1062,
+   1067,
+   1068,
+   1077,
+   1082,
+   1087
+  ]
+ ],
+ "roadmap": [
+  {
+   "status": "done",
+   "title": "Speaker-independent evaluation",
+   "text": "Test voices never appear in training. Model selection uses only training actors."
+  },
+  {
+   "status": "done",
+   "title": "Hand-crafted baseline \u00b7 53%",
+   "text": "422 acoustic features (MFCC, pitch, energy, spectrum). Five classifiers plus an ensemble."
+  },
+  {
+   "status": "done",
+   "title": "Pretrained speech encoder \u00b7 74%",
+   "text": "Frozen WavLM, a per-layer scan and a linear probe. +21 points from changing the features alone."
+  },
+  {
+   "status": "done",
+   "title": "Calibrated, portable models + this site",
+   "text": "Probes stored as plain arrays, temperature-scaled, served on CPU in about a second."
+  },
+  {
+   "status": "done",
+   "title": "Four encoders \u00d7 5-fold CV \u00b7 78%",
+   "text": "WavLM Base+/Large, HuBERT and wav2vec 2.0 under nested actor-grouped cross-validation, on Kaggle. WavLM Large wins."
+  },
+  {
+   "status": "next",
+   "title": "Cross-corpus and real-microphone tests",
+   "text": "RAVDESS, TESS and SAVEE without retraining, plus recordings from this site's own microphones."
+  },
+  {
+   "status": "next",
+   "title": "Fine-tuning with augmentation",
+   "text": "End-to-end WavLM training with noise, reverberation and phone-mic simulation, for robustness outside the studio."
+  }
+ ]
+}
