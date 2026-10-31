@@ -1,4 +1,5 @@
-﻿"""Feature caching and speaker-independent splits."""
+﻿"""Paths, feature caching and speaker-independent splits."""
+import os
 from pathlib import Path
 
 import numpy as np
@@ -8,8 +9,10 @@ from sklearn.model_selection import GroupShuffleSplit
 from ser.features import build_metadata, extract_dataset, feature_names
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = ROOT / "data" / "AudioWAV"
-CACHE = ROOT / "artifacts" / "features.pkl"
+# Both can be overridden, e.g. on Kaggle where the audio is mounted read-only under /kaggle/input.
+DATA_DIR = Path(os.environ.get("SER_DATA_DIR", ROOT / "data" / "AudioWAV"))
+ARTIFACTS_DIR = Path(os.environ.get("SER_ARTIFACTS_DIR", ROOT / "artifacts"))
+CACHE = ARTIFACTS_DIR / "features.pkl"
 
 
 def load_features(refresh=False, verbose=0):

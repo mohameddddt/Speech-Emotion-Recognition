@@ -5,6 +5,7 @@ mean-pooled over time and cached as a (n_clips, n_layers + 1, dim) float16 array
 classifier can later pick the best layer without re-running the encoder.
 """
 import json
+import os
 from pathlib import Path
 
 import joblib
@@ -16,7 +17,7 @@ from sklearn.model_selection import GroupKFold
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-from ser.data import ROOT
+from ser.data import ARTIFACTS_DIR
 from ser.features import SAMPLE_RATE, load_audio
 
 ENCODERS = {
@@ -25,7 +26,7 @@ ENCODERS = {
     "wav2vec2-base": "facebook/wav2vec2-base",
     "wavlm-large": "microsoft/wavlm-large",
 }
-EMBED_DIR = ROOT / "artifacts" / "embeddings"
+EMBED_DIR = Path(os.environ.get("SER_EMBED_DIR", ARTIFACTS_DIR / "embeddings"))
 CHUNK = 500
 
 

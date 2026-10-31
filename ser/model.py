@@ -10,10 +10,10 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 
-from ser.data import ROOT
+from ser.data import ARTIFACTS_DIR
 from ser.features import extract_file
 
-MODEL_PATH = ROOT / "artifacts" / "model.joblib"
+MODEL_PATH = ARTIFACTS_DIR / "model.joblib"
 
 
 def build_model(seed=0):

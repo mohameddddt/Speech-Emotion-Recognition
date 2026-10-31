@@ -8,7 +8,7 @@ import json
 
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
 
-from ser.data import ROOT, load_features, speaker_split, xy
+from ser.data import ARTIFACTS_DIR, load_features, speaker_split, xy
 from ser.model import MODEL_PATH, build_model, save_model
 
 
@@ -41,8 +41,8 @@ def main():
         model = build_model().fit(X_all, y_all)
 
     save_model(model)
-    (ROOT / "artifacts" / "metrics.json").write_text(json.dumps(metrics, indent=2))
-    print(f"accuracy={metrics['accuracy']} macro_f1={metrics['macro_f1']} -> saved {MODEL_PATH.relative_to(ROOT)}")
+    (ARTIFACTS_DIR / "metrics.json").write_text(json.dumps(metrics, indent=2))
+    print(f"accuracy={metrics['accuracy']} macro_f1={metrics['macro_f1']} -> saved {MODEL_PATH}")
 
 
 if __name__ == "__main__":

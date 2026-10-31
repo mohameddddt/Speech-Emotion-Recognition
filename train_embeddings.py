@@ -14,7 +14,7 @@ from pathlib import Path
 import numpy as np
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
 
-from ser.data import ROOT, DATA_DIR, speaker_split
+from ser.data import ARTIFACTS_DIR, DATA_DIR, speaker_split
 from ser.embeddings import (ENCODERS, EmbeddingEmotionModel, extract_embeddings, grouped_cv_grid,
                             make_probe, pool_layers, scan_layers)
 from ser.features import build_metadata
@@ -69,16 +69,16 @@ def run(encoder, device=None, full=False, verbose=True):
     if full:
         clf = make_probe(sel["C"]).fit(X, y)
     model = EmbeddingEmotionModel(encoder, sel["layers"], clf)
-    out = ROOT / "artifacts" / f"embed_{encoder}"
+    out = ARTIFACTS_DIR / f"embed_{encoder}"
     model.save(out.with_suffix(".joblib"))
     out.with_suffix(".json").write_text(json.dumps(metrics, indent=2))
 
-    baseline = ROOT / "artifacts" / "metrics.json"
+    baseline = ARTIFACTS_DIR / "metrics.json"
     if verbose:
         msg = f"{encoder}: accuracy={metrics['accuracy']} macro_f1={metrics['macro_f1']}"
         if baseline.exists():
             msg += f"  (hand-crafted baseline: {json.loads(baseline.read_text())['accuracy']})"
-        print(msg, "->", out.with_suffix(".joblib").relative_to(ROOT))
+        print(msg, "->", out.with_suffix(".joblib"))
     return model, metrics
 
 
