@@ -39,6 +39,26 @@ def build_metadata(data_dir):
 
 def load_audio(path, sr=SAMPLE_RATE):
     y, _ = librosa.load(path, sr=sr, mono=True)
+    return preprocess(y, sr)
+
+
+def to_mono_16k(y, sr):
+    """Float32 mono at SAMPLE_RATE from any array a browser or decoder hands us."""
+    y = np.asarray(y)
+    if np.issubdtype(y.dtype, np.integer):
+        y = y / np.iinfo(y.dtype).max
+    y = y.astype(np.float32)
+    if y.ndim == 2:  # (samples, channels) as delivered by browsers/Gradio, or (channels, samples)
+        y = y.mean(axis=1 if y.shape[0] > y.shape[1] else 0)
+    if sr != SAMPLE_RATE:
+        y = librosa.resample(y, orig_sr=sr, target_sr=SAMPLE_RATE)
+    return y
+
+
+def preprocess(y, sr=SAMPLE_RATE):
+    """Mono, 16 kHz, silence-trimmed, peak-normalised: the same steps for training and serving."""
+    y = to_mono_16k(y, sr)
+    sr = SAMPLE_RATE
     trimmed, _ = librosa.effects.trim(y, top_db=30)
     # Fall back to the raw signal if trimming removes nearly everything.
     y = trimmed if len(trimmed) > sr // 10 else y

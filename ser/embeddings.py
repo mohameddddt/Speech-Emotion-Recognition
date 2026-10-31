@@ -56,6 +56,19 @@ class Encoder:
         hidden = torch.stack(out.hidden_states)[:, 0]  # (layers + 1, frames, dim)
         return hidden.float().mean(dim=1).cpu().numpy().astype(np.float16)
 
+    def frames(self, y, layers, chunk_seconds=20):
+        """Per-frame (20 ms) embeddings averaged over `layers`: (n_frames, dim) float32.
+
+        Long audio is encoded in chunks so attention memory stays bounded.
+        """
+        torch, step, out = self._torch, chunk_seconds * SAMPLE_RATE, []
+        for start in range(0, len(y), step):
+            inputs = self.processor(y[start:start + step], sampling_rate=SAMPLE_RATE, return_tensors="pt")
+            with torch.inference_mode():
+                hidden = self.model(inputs.input_values.to(self.device), output_hidden_states=True).hidden_states
+            out.append(torch.stack([hidden[i][0] for i in layers]).float().mean(dim=0).cpu().numpy())
+        return np.concatenate(out)
+
     def embed_file(self, path):
         return self(load_audio(path))
 
