@@ -1,5 +1,7 @@
 # Speech Emotion Recognition
 
+**Website and live demo: [emotion-speach-recognition.netlify.app](https://emotion-speach-recognition.netlify.app)**
+
 | notebook | open |
 |---|---|
 | Pretrained speech embeddings (best model, GPU) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mohameddddt/Speech-Emotion-Recognition/blob/main/notebooks/embeddings_colab.ipynb) |
