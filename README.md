@@ -2,8 +2,8 @@
 
 | notebook | open |
 |---|---|
-| Pretrained speech embeddings (best model, GPU) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mohameddddt/Speech-Emotion-Recognition/blob/main/embeddings_colab.ipynb) |
-| Hand-crafted features walkthrough (CPU) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mohameddddt/Speech-Emotion-Recognition/blob/main/colab_notebook.ipynb) |
+| Pretrained speech embeddings (best model, GPU) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mohameddddt/Speech-Emotion-Recognition/blob/main/notebooks/embeddings_colab.ipynb) |
+| Hand-crafted features walkthrough (CPU) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mohameddddt/Speech-Emotion-Recognition/blob/main/notebooks/colab_notebook.ipynb) |
 
 Classifies the emotion in a short spoken sentence as **angry, disgust, fear, happy, neutral or sad**, trained on [CREMA-D](https://github.com/CheyneyComputerScience/CREMA-D).
 Two approaches are compared: hand-crafted acoustic features with a classical ML ensemble, and embeddings from a frozen pretrained speech encoder with a linear classifier.
